@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel: ViewModel() {
 
+    private val TAG = "GameViewModel"
+    init {
+        Log.d(TAG, "${TAG} created!")
+    }
 
     private var _score = 0
     val score : Int
