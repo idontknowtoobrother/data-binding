@@ -31,7 +31,7 @@ import com.example.android.unscramble.databinding.GameFragmentBinding
  */
 class GameFragment : Fragment() {
     private val TAG = "GameFragment"
-    private val gameViewModel = GameViewModel()
+    private val gameViewModel: GameViewModel by viewModels()
 
     // Binding object instance with access to the views in the game_fragment.xml layout
     private lateinit var binding: GameFragmentBinding
@@ -68,9 +68,9 @@ class GameFragment : Fragment() {
     * Displays the next scrambled word.
     */
     private fun onSubmitWord() {
-        currentScrambledWord = getNextScrambledWord()
-        currentWordCount++
-        score += SCORE_INCREASE
+//        currentScrambledWord = getNextScrambledWord()
+//        currentWordCount++
+//        score += SCORE_INCREASE
         binding.wordCount.text = getString(R.string.word_count, gameViewModel.currentWordCount, MAX_NO_OF_WORDS)
         binding.score.text = getString(R.string.score, gameViewModel.score)
         setErrorTextField(false)
@@ -82,8 +82,8 @@ class GameFragment : Fragment() {
      * Increases the word count.
      */
     private fun onSkipWord() {
-        currentScrambledWord = getNextScrambledWord()
-        currentWordCount++
+//        currentScrambledWord = getNextScrambledWord()
+//        currentWordCount++
         binding.wordCount.text = getString(R.string.word_count, gameViewModel.currentWordCount, MAX_NO_OF_WORDS)
         setErrorTextField(false)
         updateNextWordOnScreen()
