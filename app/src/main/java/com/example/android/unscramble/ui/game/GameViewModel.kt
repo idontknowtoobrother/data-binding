@@ -1,18 +1,20 @@
 package com.example.android.unscramble.ui.game
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class GameViewModel: ViewModel() {
 
+
     private var _score = 0
-    private val score : Int
+    val score : Int
         get() = _score
 
     private var _currentWordCount = 0
-    private val currentWordCount : Int
+    val currentWordCount : Int
         get() = _currentWordCount
 
     private var _currentScrambledWord = "test"
-    private val currentScrambledWord : String
+    val currentScrambledWord : String
         get() = _currentScrambledWord
 }
