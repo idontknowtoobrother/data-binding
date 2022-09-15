@@ -1,8 +1,8 @@
 package com.example.android.unscramble.ui.game
 
+
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import java.sql.Struct
 
 class GameViewModel: ViewModel() {
 
@@ -50,8 +50,6 @@ class GameViewModel: ViewModel() {
         ++_currentWordCount
         wordList.add(_currentWord)
     }
-
-
 
     override fun onCleared() {
         super.onCleared()
