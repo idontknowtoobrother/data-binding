@@ -160,6 +160,14 @@ class GameFragment : Fragment() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.congratulations))
             .setMessage(getString(R.string.you_scored, gameViewModel.score))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.exit)) {_, _ ->
+                exitGame()
+            }
+            .setPositiveButton(getString(R.string.play_again)) { _, _ ->
+
+            }
+            .show()
     }
 
 }
