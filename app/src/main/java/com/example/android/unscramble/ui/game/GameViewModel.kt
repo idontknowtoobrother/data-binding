@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 class GameViewModel: ViewModel() {
 
     private val TAG = "GameViewModel"
-    init {
-        Log.d(TAG, "${TAG} created!")
-        getNextWord()
-    }
+
 
     private var _score = 0
     val score : Int
@@ -26,6 +23,11 @@ class GameViewModel: ViewModel() {
     private var wordList: MutableList<String> = mutableListOf()
     private lateinit var _currentWord: String
 
+    init {
+        Log.d(TAG, "${TAG} created!")
+        getNextWord()
+    }
+
     fun nextWord(): Boolean {
         return  if (currentWordCount < MAX_NO_OF_WORDS){
             getNextWord()
@@ -33,21 +35,43 @@ class GameViewModel: ViewModel() {
         } else false
     }
 
-    private fun getNextWord()  {
-        _currentWord = wordList.random()
+    private fun getNextWord() {
+        _currentWord = allWordsList.random()
         val tempWord = _currentWord.toCharArray()
         tempWord.shuffle()
+
         while (String(tempWord).equals(_currentWord, false)) {
             tempWord.shuffle()
         }
-
-        if(wordList.contains(_currentWord)){
-            return getNextWord()
+        if (wordList.contains(_currentWord)) {
+            getNextWord()
+        } else {
+            _currentScrambledWord = String(tempWord)
+            ++_currentWordCount
+            wordList.add(_currentWord)
         }
+    }
 
-        _currentScrambledWord = String(tempWord)
-        ++_currentWordCount
-        wordList.add(_currentWord)
+
+    fun reinitializeData() {
+        _score = 0
+        _currentWordCount = 0
+        wordList.clear()
+        getNextWord()
+
+    }
+
+    fun isUserWordCorrect(playerWord : String): Boolean {
+        if(playerWord.equals(_currentWord)) {
+            increaseScore()
+            return true
+        }
+        return false
+    }
+
+    private fun increaseScore() {
+        _score += SCORE_INCREASE
+
     }
 
     override fun onCleared() {
