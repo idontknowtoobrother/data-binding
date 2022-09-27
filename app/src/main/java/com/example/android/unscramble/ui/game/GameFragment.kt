@@ -155,4 +155,11 @@ class GameFragment : Fragment() {
         super.onDetach()
         Log.d(TAG, "${TAG} destroyed!")
     }
+
+    private fun showFinalDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.congratulations))
+            .setMessage(getString(R.string.you_scored, gameViewModel.score))
+    }
+
 }
